@@ -56,10 +56,10 @@ Inside `holesky` directory, We will need to prepare 2 files: `.env` and `config.
 
     Specify your operator’s keystore location and password. These are to be used to commit to your registered operator.
     ```
-    - ECDSA_PRIVATE_KEY_STORE_PATH=
-    - OPERATOR_ECDSA_KEY_PASSWORD=
-    - BLS_PRIVATE_KEY_STORE_PATH=
-    - OPERATOR_BLS_KEY_PASSWORD=
+    - ECDSA_KEYSTORE_PATH=
+    - ECDSA_KEY_PASSWORD=
+    - BLS_KEYSTORE_PATH=
+    - BLS_KEY_PASSWORD=
     ```
 
     Besides, the DB_PATH is to specify the local path to store your operator’s data for our AVS.
