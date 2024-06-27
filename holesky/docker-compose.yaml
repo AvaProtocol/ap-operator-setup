@@ -12,10 +12,13 @@ services:
       - 9090:9090
       - 9091:9091
     volumes:
-      - ./config.yaml:/app/config.yaml
-      - ${DB_PATH}:/app/db
-      - ${ECDSA_PRIVATE_KEY_STORE_PATH}:/app/.operator-keys/operator.ecdsa.key.json
-      - ${BLS_PRIVATE_KEY_STORE_PATH}:/app/.operator-keys/operator.bls.key.json
+      - ./config.yaml:/app/config.yaml:ro
+      - ${ECDSA_KEYSTORE_PATH}:/app/.operator-keys/operator.ecdsa.key.json:ro
+      - ${BLS_KEYSTORE_PATH}:/app/.operator-keys/operator.bls.key.json:ro
+      - ${DB_PATH}:/app/db:rw
+    environment:
+      OPERATOR_ECDSA_KEY_PASSWORD: ${ECDSA_KEY_PASSWORD}
+      OPERATOR_BLS_KEY_PASSWORD: ${BLS_KEY_PASSWORD}
     logging:
       driver: "json-file"
       options:
