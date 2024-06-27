@@ -4,7 +4,8 @@ This guide will walk you through the process of registering as an operator to Av
 
 This guide focus on running everything with-in docker container. If you don't
 want to use docker container, you can follow this guide 
-## Pre-requirement
+
+## Prerequisite
 
 An operator need to be onboard and setup their own operator with EigenLayer,
 following the [official
@@ -37,43 +38,49 @@ git clone git@github.com:AvaProtocol/ap-operator-setup.git
 cd ap-operator-setup
 ```
 
-We had two directory call `holesky` and `mainnet`. To setup testnet, you will do
+We had two directory call `holesky` and `ethereum`. To setup testnet, you will do
 everything inside `hokesky` directory. For mainnet deployment, you would use
-files inside `mainnet` directory.
+files inside `ethereum` directory.
 
 
 ## 2. Prepare config file and credential
 
-Inside `holesky` directory, We will need to prepare 2 files:
+Inside `holesky` directory, We will need to prepare 2 files: `.env` and `config.yaml`.
 
-- env
-- config.yaml
+1. Make sure you are under `ethereum` or `holesky` direction, and prepare `.env` file
+    ```
+    cp .env.example .env
+    ```
 
-```
-cd holesky
-cp .env.example .env
-```
+2. Then, edit it and fill in 5 things:
 
-Then edit it and fill in 5 things:
+    Specify your operator’s keystore location and password. These are to be used to commit to your registered operator.
+    ```
+    - ECDSA_KEYSTORE_PATH=
+    - ECDSA_KEY_PASSWORD=
+    - BLS_KEYSTORE_PATH=
+    - BLS_KEY_PASSWORD=
+    ```
 
-- ECDSA_PRIVATE_KEY_STORE_PATH=<path-to-your-ecdsa-private-key>
-- BLS_PRIVATE_KEY_STORE_PATH=<path-to-your-bls-private-key>
-- OPERATOR_BLS_KEY_PASSWORD=<bls-key-password>
-- OPERATOR_ECDSA_KEY_PASSWORD=<ecdsa-key-password>
-- DB_PATH=<path-to-a-directory-to-hold-operator-volume>
+    Besides, the DB_PATH is to specify the local path to store your operator’s data for our AVS.
+    ```
+    - DB_PATH=
+    ```
 
-We don't use high io so you can store on a normal volume such as gp3 wih 3000
-IOPS on EC2.
+    We don't use high io so you can store on a normal volume such as gp3 wih 3000
+    IOPS on EC2.
 
-Next, we will create `config.yaml` file for operator:
+3. Next, we will create `config.yaml` file for operator:
 
-```
-cp config.yaml.example config.yaml
-```
+    ```
+    cp config.yaml.example config.yaml
+    ```
 
-Then update your `operator_address`.
+    Only change the value of `operator_address` to your own operator wallet address.
 
-## 3. Register your operator to AP AVS
+    ```
+
+## 2.b One-time task: Register your operator to Ava Protocol AVS
 
 This step is only needed to be done once per operator.
 
@@ -89,20 +96,28 @@ docker compose run ap-operator status --config=/app/config.yaml
 
 Next, we're ready to run operator and process job.
 
-## 4. Starting up operator
+## 3. Start to run our AVS
+1. Make sure you are under `./ethereum` or `./holesky` directory.
+2. Run the following command to start the operator
+    ```
+    docker compose pull
 
-```
-cd holesky
-docker compose pull
+    docker compose up --force-recreate
+    ```
 
-docker compose up --force-recreate
-```
-
-## Mainnet setup
-
-The process is similarly but you would setup and run operator in the `mainnet`
-directory.
-
+    Once the operator is up and running, the output log will look like below.
+    ```
+    docker compose up --force-recreate
+    [+] Running 1/0
+    ✔ Container ap_operator  Created                                                                                                                                                          0.0s 
+    Attaching to ap_operator
+    ap_operator  | {"level":"info","ts":1719529804.5644045,"caller":"operator/operator.go:263","msg":"Connect to aggregator aggregator-holesky.avaprotocol.org:2206"}
+    ap_operator  | {"level":"info","ts":1719529804.8751178,"caller":"operator/operator.go:307","msg":"Operator info","operatorId":[74,60,26,85,160,147,136,79,102,183,189,62,99,76,192,151,203,7,97,85,230,236,25,160,46,242,83,194,177,93,63,163],"operatorAddr":"0x2273e70Ea0F159985a9312e875839CbF242f162e","operatorG1Pubkey":"E([13980129839750270625587959504067205960106881892608925358182969477593110597180,2713793992502006479543294653290264953732656227600455037615150886215476630684])","operatorG2Pubkey":"E([10006440951214432193970386287330007898372605552301114697229665952718363326438+2917899138783614023915162275072742305856792653861495716209344717215206657922*u,20465317265628248898772842070116958367267377808142334627836040792686631701030+11895853732396257221594908719294998059804388586884333547663795174064486592588*u])"}
+    ap_operator  | {"level":"info","ts":1719529805.3309655,"caller":"operator/operator.go:330","msg":"Starting operator."}
+    ap_operator  | {"level":"info","ts":1719529805.3310997,"caller":"nodeapi/nodeapi.go:104","msg":"Starting node api server at address 0.0.0.0:9010"}
+    ap_operator  | {"level":"info","ts":1719529805.33198,"caller":"metrics/eigenmetrics.go:81","msg":"Starting metrics server at port 0.0.0.0:9090"}
+    ap_operator  | {"level":"info","ts":1719529805.3321455,"caller":"nodeapi/nodeapi.go:238","msg":"node api server running","addr":"0.0.0.0:9010"}
+    ```
 
 # FAQ
 
@@ -111,10 +126,8 @@ directory.
 ```
 git pull 
 
-# for testnet
-cd holesky
-# for mainnet
-cd mainnet
+# cd into either mainnet or holesky directory
+cd ethereum
 
 # then issue a pull command to fetch latest image
 docker compose pull
@@ -133,6 +146,9 @@ processing task that our aggregator asked it to do.
 
 You can also visit the telemetry dashboard
 
-### Testnet
+### Testnet Operator Status Page
 
 https://aggregator-holesky.avaprotocol.org/telemetry
+
+### Ethereum Operator Status Page
+Coming soon
