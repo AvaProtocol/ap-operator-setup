@@ -1,0 +1,31 @@
+version: '3.8'
+name: ava_protocol
+services:
+  ap-operator:
+    env_file:
+      - .env
+    container_name: ap_operator
+    command:
+    - operator
+    - "--config=/app/config.yaml"
+    ports:
+      - 9090:9090
+      - 9091:9091
+    volumes:
+      - ./config.yaml:/app/config.yaml
+      - ${DB_PATH}:/app/db
+      - ${ECDSA_PRIVATE_KEY_STORE_PATH}:/app/.operator-keys/operator.ecdsa.key.json
+      - ${BLS_PRIVATE_KEY_STORE_PATH}:/app/.operator-keys/operator.bls.key.json
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "10"
+    image: avaprotocol/ap-avs:latest
+    restart: unless-stopped
+    networks:
+      - ava
+
+networks:
+  ava:
+    name: ava
