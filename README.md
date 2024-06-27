@@ -84,12 +84,12 @@ docker compose run ap-operator register --config=/app/config.yaml
 To check the registration status at any given time you can also do:
 
 ```
-docker compose run ap-operator register --config=/app/config.yaml
+docker compose run ap-operator status --config=/app/config.yaml
 ```
 
 Next, we're ready to run operator and process job.
 
-## 3. Starting up operator
+## 4. Starting up operator
 
 ```
 cd holesky
