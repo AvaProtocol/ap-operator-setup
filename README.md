@@ -45,7 +45,10 @@ files inside `ethereum` directory.
 
 ## 2. Prepare config file and credential
 
-Inside `holesky` directory, We will need to prepare 2 files: `.env` and `config.yaml`.
+To setup for holesky testnet, we would do everything inside `holesky` directory.
+To setup for ethereum mainnet, we would do everything inside `ethereum` directory.
+
+Inside `holesky` or `ethereum` directory, We will need to prepare 2 files: `.env` and `config.yaml`.
 
 1. Make sure you are under `ethereum` or `holesky` direction, and prepare `.env` file
     ```
