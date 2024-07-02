@@ -78,11 +78,13 @@ Inside `holesky` directory, We will need to prepare 2 files: `.env` and `config.
 
     Only change the value of `operator_address` to your own operator wallet address.
 
-    ```
 
 ## 2.b One-time task: Register your operator to Ava Protocol AVS
 
-This step is only needed to be done once per operator.
+This step is only needed to be done once per operator. Also, recall that you
+would need to `cd` into `holesky` for testnet and `ethereum` for mainnet before
+running anything.
+
 
 ```
 docker compose run ap-operator register --config=/app/config.yaml
@@ -151,4 +153,5 @@ You can also visit the telemetry dashboard
 https://aggregator-holesky.avaprotocol.org/telemetry
 
 ### Ethereum Operator Status Page
-Coming soon
+
+https://aggregator.avaprotocol.org/telemetry

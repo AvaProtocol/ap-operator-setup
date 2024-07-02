@@ -7,7 +7,7 @@ operator_state_retriever_address: 0xb3af70D5f72C04D1f490ff49e5aB189fA7122713
 
 # If you have your own rpc you can switch to it
 eth_rpc_url: https://rpc.mevblocker.io
-eth_ws_url: wss://rpc.mevblocker.io
+eth_ws_url: wss://eth.drpc.org
 
 ecdsa_private_key_store_path: /app/.operator-keys/operator.ecdsa.key.json
 bls_private_key_store_path: /app/.operator-keys/operator.bls.key.json
