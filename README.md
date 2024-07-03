@@ -112,10 +112,21 @@ Next, we're ready to run operator and process job.
 
     Once the operator is up and running, the output log will look like below.
     ```
-    docker compose up --force-recreate
+    docker compose up --force-recreate -d
     [+] Running 1/0
-    ✔ Container ap_operator  Created                                                                                                                                                          0.0s 
-    Attaching to ap_operator
+    ✔ Container ap_operator  Created
+    ✔ Container ap_operator  Started
+    ```
+
+    To view the operator log itself, you can do:
+
+    ```
+    docker compose logs -f 
+    ```
+
+    The log should appear similar to this:
+    
+    ```
     ap_operator  | {"level":"info","ts":1719529804.5644045,"caller":"operator/operator.go:263","msg":"Connect to aggregator aggregator-holesky.avaprotocol.org:2206"}
     ap_operator  | {"level":"info","ts":1719529804.8751178,"caller":"operator/operator.go:307","msg":"Operator info","operatorId":[74,60,26,85,160,147,136,79,102,183,189,62,99,76,192,151,203,7,97,85,230,236,25,160,46,242,83,194,177,93,63,163],"operatorAddr":"0x2273e70Ea0F159985a9312e875839CbF242f162e","operatorG1Pubkey":"E([13980129839750270625587959504067205960106881892608925358182969477593110597180,2713793992502006479543294653290264953732656227600455037615150886215476630684])","operatorG2Pubkey":"E([10006440951214432193970386287330007898372605552301114697229665952718363326438+2917899138783614023915162275072742305856792653861495716209344717215206657922*u,20465317265628248898772842070116958367267377808142334627836040792686631701030+11895853732396257221594908719294998059804388586884333547663795174064486592588*u])"}
     ap_operator  | {"level":"info","ts":1719529805.3309655,"caller":"operator/operator.go:330","msg":"Starting operator."}
@@ -129,22 +140,30 @@ Next, we're ready to run operator and process job.
 ## How to update
 
 ```
-git pull 
+# pull the lastest change from our repository
+git pull
 
-# cd into either mainnet or holesky directory
+# cd into either mainnet or holesky directory depend on mainne or testnet
 cd ethereum
 
 # then issue a pull command to fetch latest image
 docker compose pull
 
-# finally restart with the new container
-docker compose up --force-recreate
+# finally restart the container with the new image
+docker compose up --force-recreate -d
 ```
+
+## How to configure auto update
+
+If you want to configure auto update, check our instruction in
+[autoupdater](autoupdater)
+
 
 ## How to check that my operator is working
 
 When your operator connects to aggregator, it will reports telemetry which we
-can check to ensure your operator is working properly
+can check to ensure your operator is working properly. We're currently working
+on prometheus metrics and dashboard to provide operator with visibility.
 
 Beside, you will see some log indicate that the operator is working and
 processing task that our aggregator asked it to do.
