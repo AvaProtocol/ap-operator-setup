@@ -17,7 +17,7 @@ To run the auto update simply perform:
 
 
 ```
-# make sure you're inside the `autoupdater` directory.
+# make sure you're inside the `watchtower` directory.
 # then bring up docker compose
 docker compose up -d
 
@@ -27,7 +27,7 @@ you should see something like this
 
 
 ```
- ✔ Container ap_autoupdater  Started
+ ✔ Container watchtower  Started
 ```
 
 To check the log you can do:
@@ -42,11 +42,11 @@ And it should show up like this:
 
 ```
 ❯ docker compose logs -f
-ap_autoupdater  | time="2024-07-03T00:01:58Z" level=info msg="Watchtower 1.7.1"
-ap_autoupdater  | time="2024-07-03T00:01:58Z" level=info msg="Using no notifications"
-ap_autoupdater  | time="2024-07-03T00:01:58Z" level=info msg="Only checking containers which name matches \"ap_operator\""
-ap_autoupdater  | time="2024-07-03T00:01:58Z" level=info msg="Scheduling first run: 2024-07-03 08:01:58 +0000 UTC"
-ap_autoupdater  | time="2024-07-03T00:01:58Z" level=info msg="Note that the first check will be performed in 7 hours, 59 minutes, 59 seconds"
+watchtower  | time="2024-07-03T00:01:58Z" level=info msg="Watchtower 1.7.1"
+watchtower  | time="2024-07-03T00:01:58Z" level=info msg="Using no notifications"
+watchtower  | time="2024-07-03T00:01:58Z" level=info msg="Only checking containers which name matches \"ap_operator\""
+watchtower  | time="2024-07-03T00:01:58Z" level=info msg="Scheduling first run: 2024-07-03 08:01:58 +0000 UTC"
+watchtower  | time="2024-07-03T00:01:58Z" level=info msg="Note that the first check will be performed in 7 hours, 59 minutes, 59 seconds"
 ```
 
 You can read more about the
