@@ -156,7 +156,7 @@ docker compose up --force-recreate -d
 ## How to configure auto update
 
 If you want to configure auto update, check our instruction in
-[autoupdater](autoupdater)
+[watchtower](watchtower)
 
 
 ## How to check that my operator is working
