@@ -1,5 +1,5 @@
 version: '3.8'
-name: ava_protocol
+name: ava_protocol_ethereum
 services:
   ap-operator:
     env_file:
@@ -27,8 +27,8 @@ services:
     image: avaprotocol/ap-avs:latest
     restart: unless-stopped
     networks:
-      - ava
+      - ava_ethereum
 
 networks:
   ava:
-    name: ava
+    name: ava_ethereum
