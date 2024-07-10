@@ -4,7 +4,7 @@ services:
   ap-operator:
     env_file:
       - .env
-    container_name: ap_operator
+    container_name: ap_operator_ethereum
     command:
     - operator
     - "--config=/app/config.yaml"
@@ -27,7 +27,7 @@ services:
     image: avaprotocol/ap-avs:latest
     restart: unless-stopped
     networks:
-      - ava_ethereum
+      - ava
 
 networks:
   ava:
