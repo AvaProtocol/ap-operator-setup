@@ -9,8 +9,8 @@ services:
     - operator
     - "--config=/app/config.yaml"
     ports:
-      - 9090:9090
-      - 9091:9091
+      - 9290:9090
+      - 9291:9091
     volumes:
       - ./config.yaml:/app/config.yaml:ro
       - ${ECDSA_KEYSTORE_PATH}:/app/.operator-keys/operator.ecdsa.key.json:ro
