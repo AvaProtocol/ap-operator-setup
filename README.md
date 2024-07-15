@@ -3,7 +3,8 @@
 This guide will walk you through the process of registering as an operator to Ava OProtocol AVS and running the Ava Protocol software.
 
 This guide focus on running everything with-in docker container. If you don't
-want to use docker container, you can follow this guide 
+want to use docker container, you can follow [other guide
+instead](https://github.com/AvaProtocol/EigenLayer-AVS/blob/main/docs/operator.md#run-operators)
 
 ## Prerequisite
 
@@ -99,9 +100,78 @@ To check the registration status at any given time you can also do:
 docker compose run ap-operator status --config=/app/config.yaml
 ```
 
-Next, we're ready to run operator and process job.
+Ensure that you successfully register your operator before moving to step 3.
+
+
+## 2.c (Optinal) One-time task: Setting up alias key
+
+At this moment, you're all set to run AP AVS and move to step 3.
+The step described in 2.c involves security hardening. It's more
+complicated to set up and less convenient, but it improves key
+management.
+
+The operator ECDSA key allows access to funds under that key.
+Optionally, you can use a different ECDSA key pair from your
+EigenLayer operator ECDSA key and bind this new alias key to
+your operator. This way, your operator can use the new alias
+key to interact with the Ava Protocol, and we will still be
+able to identify your operator address. At the same time,
+the AP AVS software will not have access to your operator
+ECDSA key.
+
+The process includes two steps:
+
+- Generate or import an existing ECDSA key to create an alias key.
+- Bind the alias key to your operator ECDSA key.
+
+While it's not necessary to perform these steps, doing so
+enhances security by ensuring that your operator ECDSA key
+remains protected.
+
+You do need access to the operator ECDSA key to perform below steps.
+
+### Generate alias key
+
+We will generate an alias key and temporarily put them in a folder call
+`keys`. You will move them to the right location later.
+
+```
+# create the temp directory to hold the generated keys
+mkdir keys
+
+docker compose run -v `pwd`/keys:/app/keys/ ap-operator --config=/app/config.yaml --create-alias-key --name=/app/keys/alias-ecdsa.key.json
+```
+
+Now, a file call `alias-ecdsa.key.json` is created inside the `keys` directory.
+You can move it to the right place on your node.
+
+### Declare the alias key for your operator
+
+Now, we will send an on-chain transaction from your operator ECDSA key to bind
+the newly generated alias key to it.
+
+Ensure your operator ECDSA key has some fund in it to pay for the gas fee.
+
+```
+docker compose run -v path-to-the-alias-ecdsa-key.json-above-on-your-node:/app/keys/alias-ecdsa.key.json ap-operator declare-alias --config=/app/config.yaml --name=/app/keys/alias-ecdsa.key.json
+```
+
+You should see a message like this at the end 
+
+```
+succesfully declared an alias for operator [your-operator-keys] alias address [your-alias-address-key] at tx [tx-hash]
+```
+
+Now, in your `.env` file, you can replace `ECDSA_KEYSTORE_PATH`, which is
+pointed to your operator ECDSA key, to point to the path of the alias key
+we just create in above step.
+
+```
+ECDSA_KEYSTORE_PATH=<path-to-the-above-alias-ecdsa-key-file-above>
+```
 
 ## 3. Start to run our AVS
+
 1. Make sure you are under `./ethereum` or `./holesky` directory.
 2. Run the following command to start the operator
     ```
