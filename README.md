@@ -142,8 +142,9 @@ mkdir keys
 docker compose run -v `pwd`/keys:/app/keys/ ap-operator --config=/app/config.yaml --create-alias-key --name=/app/keys/alias-ecdsa.key.json
 ```
 
-Now, a file call `alias-ecdsa.key.json` is created inside the `keys` directory.
-You can move it to the right place on your node.
+A file call `alias-ecdsa.key.json` should be created inside the `keys` directory.
+You can move it to the right place on your node. This will be your alias key
+moving forward.
 
 ### Declare the alias key for your operator
 
@@ -169,6 +170,12 @@ we just create in above step.
 ```
 ECDSA_KEYSTORE_PATH=<path-to-the-above-alias-ecdsa-key-file-above>
 ```
+
+You're all set to move to step 3) to run your operator with the alias key.
+At any given time, you can also just change the `ECDSA_KEYSTORE_PATH` to point
+to your original operator ECDSA key to perform operation that require the
+operator ECDSA key. Usually, only the registraion and deregistration require
+that key.
 
 ## 3. Start to run our AVS
 
