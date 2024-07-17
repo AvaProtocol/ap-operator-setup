@@ -139,7 +139,7 @@ We will generate an alias key and temporarily put them in a folder call
 # create the temp directory to hold the generated keys
 mkdir keys
 
-docker compose run -v `pwd`/keys:/app/keys/ ap-operator --config=/app/config.yaml --create-alias-key --name=/app/keys/alias-ecdsa.key.json
+docker compose run -v `pwd`/keys:/app/keys/ ap-operator --config=/app/config.yaml create-alias-key --name=/app/keys/alias-ecdsa.key.json
 ```
 
 A file call `alias-ecdsa.key.json` should be created inside the `keys` directory.
