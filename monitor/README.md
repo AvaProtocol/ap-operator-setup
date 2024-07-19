@@ -9,7 +9,7 @@ This guide covers how to setup the monitoring docker containers for Ava Protocol
 AVS.
 
 It contains a full stack monitoring with prometheus, grafana, and data is store
-in docker volume. If you already have an existing grfana/prometheus stack, you
+in docker volume. If you already had an existing grfana/prometheus stack, you
 can extract or use this as your sample implementation for metric scraper and
 dashboard definition
 
@@ -48,21 +48,21 @@ docker compose up -d
 ```
 
 
-3. If you are running the holesky, run the following command to
+3.a If you are running the holesky, run the following command to
    connect your node network to the monitoring network:
 
 ```bash
 docker network connect ava-protocol-network prometheus
 ```
 
-4. If you are running the mainnet, run the following command to
-   connect your multiprover mainnet node network to the monitoring network:
+3.a If you are running the mainnet, run the following command to
+   connect your mainnet node network to the monitoring network:
 
 ```bash
-docker network connect multiprover-avs-mainnet-network prometheus
+docker network connect ava-protocol--network prometheus
 ```
 
-5. Done! Now Prometheus should be scraping the metrics from the AP avs
+4. Done! Now Prometheus should be scraping the metrics from the AP avs
    container that you have setup. Give it a few minutes and you should also be
 able to see some metrics in your Grafana dashboards.
 
