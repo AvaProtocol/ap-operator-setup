@@ -64,4 +64,5 @@ services:
 
 networks:
   monitoring:
+    name: ava_monitor
     driver: bridge
