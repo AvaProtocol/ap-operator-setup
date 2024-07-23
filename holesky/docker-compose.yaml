@@ -10,7 +10,7 @@ services:
     - "--config=/app/config.yaml"
     ports:
       - 9290:9090
-      - 9291:9091
+      - 9291:9010
     volumes:
       - ./config.yaml:/app/config.yaml:ro
       - ${ECDSA_KEYSTORE_PATH}:/app/.operator-keys/operator.ecdsa.key.json:ro
@@ -24,7 +24,8 @@ services:
       options:
         max-size: "100m"
         max-file: "10"
-    image: avaprotocol/ap-avs:latest
+    #image: avaprotocol/ap-avs:latest
+    image: ava:1
     restart: unless-stopped
     networks:
       - ava
