@@ -254,3 +254,9 @@ https://aggregator-holesky.avaprotocol.org/telemetry
 ### Ethereum Operator Status Page
 
 https://aggregator.avaprotocol.org/telemetry
+
+## Monitoring your AVS.
+
+We provide a prometheus and grafana stack in a completed docker compose setup
+inside [monitor](monitor) directory. This docker compose stack can be used to
+configure an end to end monitoring solution for your AVS.
