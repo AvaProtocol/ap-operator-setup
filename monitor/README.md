@@ -26,7 +26,7 @@ dashboard definition
 cp .env.example .env
 ```
 
-Edit your `.env` to update 3 things
+Edit your `.env` to update 4 things
 
 ```
 # This will be the port to access your grafana
@@ -35,6 +35,9 @@ GRAFANA_PORT=3009
 GF_SECURITY_ADMIN_USER=admin
 # this is the default admin user password
 GF_SECURITY_ADMIN_PASSWORD=fluffybunny
+
+# use `ethereum` for mainnet or `holesky` for testnet
+NETWORK=ethereum
 ```
 
 Those are initially credentiall, after grafana is up, you can also change the
