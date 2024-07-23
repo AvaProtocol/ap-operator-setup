@@ -40,7 +40,7 @@
         "type": "prometheus",
         "uid": "prometheus"
       },
-      "description": "The total active time in last second of the operator. ",
+      "description": "hourly total uptime in second of the oprator.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -51,12 +51,16 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "dark-red",
                 "value": null
               },
               {
-                "color": "red",
-                "value": 80000000000
+                "color": "dark-yellow",
+                "value": 2000
+              },
+              {
+                "color": "dark-green",
+                "value": 3510
               }
             ]
           }
@@ -106,7 +110,7 @@
           "useBackend": false
         }
       ],
-      "title": "Uptime",
+      "title": "Hourly Uptime",
       "transformations": [
         {
           "id": "convertFieldType",
@@ -664,8 +668,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -737,8 +740,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -829,13 +831,13 @@
     ]
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "Ava Protocol Metrics",
   "uid": "fds4adp1tto1sf",
-  "version": 25,
+  "version": 29,
   "weekStart": ""
 }
