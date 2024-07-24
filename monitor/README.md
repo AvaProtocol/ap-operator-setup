@@ -26,7 +26,7 @@ dashboard definition
 cp .env.example .env
 ```
 
-Edit your `.env` to update 4 things
+Edit your `.env` to update 3 things
 
 ```
 # This will be the port to access your grafana
@@ -47,14 +47,14 @@ password directly on the UI.
 docker compose up -d
 ```
 
-3.a If you are running the mainnet, run the following command to
+3. a) If you are running the mainnet, run the following command to
    connect your mainnet node network to the monitoring network:
 
 ```bash
 docker network connect ava_ethereum prometheus
 ```
 
-3.b If you are running the holesky, run the following command to
+3. b) If you are running the holesky, run the following command to
    connect your node network to the monitoring network:
 
 ```bash
