@@ -74,6 +74,10 @@ Inside `holesky` or `ethereum` directory, We will need to prepare 2 files: `.env
     We don't use high io so you can store on a normal volume such as gp3 wih 3000
     IOPS on EC2.
 
+    If the default ports of PUBLIC_NODEAPI_PORT and PUBLIC_METRICS_PORT were
+    used by different processes, you can also set them to any available ports in your
+    env file too.
+
 3. Next, we will create `config.yaml` file for operator:
 
     ```

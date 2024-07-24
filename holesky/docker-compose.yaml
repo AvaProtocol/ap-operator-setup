@@ -9,8 +9,8 @@ services:
     - operator
     - "--config=/app/config.yaml"
     ports:
-      - 9290:9290
-      - 9291:9291
+      - ${PUBLIC_METRICS_PORT:-9290}:9090
+      - ${PUBLIC_NODEAPI_PORT:-9291}:9010
     volumes:
       - ./config.yaml:/app/config.yaml:ro
       - ${ECDSA_KEYSTORE_PATH}:/app/.operator-keys/operator.ecdsa.key.json:ro
@@ -19,12 +19,14 @@ services:
     environment:
       OPERATOR_ECDSA_KEY_PASSWORD: ${ECDSA_KEY_PASSWORD}
       OPERATOR_BLS_KEY_PASSWORD: ${BLS_KEY_PASSWORD}
+      PUBLIC_METRICS_PORT: ${PUBLIC_METRICS_PORT:-9290}
+      PUBLIC_NODEAPI_PORT: ${PUBLIC_NODEAPI_PORT:-9291}
     logging:
       driver: "json-file"
       options:
         max-size: "100m"
         max-file: "10"
-    image: avaprotocol/ap-avs:latest
+    image: ${AP_OPERATOR_IMAGE:-avaprotocol/ap-avs:latest}
     restart: unless-stopped
     networks:
       - ava

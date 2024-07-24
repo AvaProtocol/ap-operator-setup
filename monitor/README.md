@@ -35,9 +35,6 @@ GRAFANA_PORT=3009
 GF_SECURITY_ADMIN_USER=admin
 # this is the default admin user password
 GF_SECURITY_ADMIN_PASSWORD=fluffybunny
-
-# use `ethereum` for mainnet or `holesky` for testnet
-NETWORK=ethereum
 ```
 
 Those are initially credentiall, after grafana is up, you can also change the
