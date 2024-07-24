@@ -46,14 +46,14 @@ dashboard definition
     docker compose up -d
     ```
 
-3. a) If you are running the mainnet, run the following command to
+3.a If you are running the mainnet, run the following command to
    connect your mainnet node network to the monitoring network:
 
     ```bash
     docker network connect ava_ethereum prometheus
     ```
 
-3. b) If you are running the holesky, run the following command to
+3.b If you are running the holesky, run the following command to
    connect your node network to the monitoring network:
 
     ```bash
