@@ -45,7 +45,8 @@ dashboard definition
     docker compose up -d
     ```
 
-  
+4. Connect your container node to monitoring network
+
     4.a If you are running the mainnet, run the following command to
         connect your mainnet node network to the monitoring network:
 
