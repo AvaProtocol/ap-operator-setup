@@ -47,18 +47,18 @@ dashboard definition
     ```
 
 4.a. If you are running the mainnet, run the following command to
-    connect your mainnet node network to the monitoring network:
+     connect your mainnet node network to the monitoring network:
 
-    ```bash
-    docker network connect ava_ethereum prometheus
-    ```
+     ```bash
+     docker network connect ava_ethereum prometheus
+     ```
 
 4.b. If you are running the holesky, run the following command to
-    connect your node network to the monitoring network:
+     connect your node network to the monitoring network:
 
-    ```bash
-    docker network connect ava prometheus
-    ```
+     ```bash
+     docker network connect ava prometheus
+     ```
 
 5. Done! Now Prometheus should be scraping the metrics from the AP avs
    container that you have setup. Give it a few minutes and you should also be
