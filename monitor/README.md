@@ -25,7 +25,7 @@ dashboard definition
     cp .env.example .env
     ```
 
-    Edit your `.env` to update 3 things
+    Edit your `.env` to update these value
    
     ```
     # This will be the port to access your grafana
@@ -40,27 +40,27 @@ dashboard definition
     password directly on the UI.
    
 
-2. Now, run the following command to start the monitoring stack:
+3. Now, run the following command to start the monitoring stack:
 
     ```bash
     docker compose up -d
     ```
 
-3.a If you are running the mainnet, run the following command to
+4.a If you are running the mainnet, run the following command to
    connect your mainnet node network to the monitoring network:
 
     ```bash
     docker network connect ava_ethereum prometheus
     ```
 
-3.b If you are running the holesky, run the following command to
+4.b If you are running the holesky, run the following command to
    connect your node network to the monitoring network:
 
     ```bash
     docker network connect ava prometheus
     ```
 
-4. Done! Now Prometheus should be scraping the metrics from the AP avs
+5. Done! Now Prometheus should be scraping the metrics from the AP avs
    container that you have setup. Give it a few minutes and you should also be
    able to see some metrics in your Grafana dashboards.
 
