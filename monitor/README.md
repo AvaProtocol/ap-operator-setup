@@ -47,14 +47,14 @@ dashboard definition
     ```
 
 4.a If you are running the mainnet, run the following command to
-   connect your mainnet node network to the monitoring network:
+    connect your mainnet node network to the monitoring network:
 
     ```bash
     docker network connect ava_ethereum prometheus
     ```
 
 4.b If you are running the holesky, run the following command to
-   connect your node network to the monitoring network:
+    connect your node network to the monitoring network:
 
     ```bash
     docker network connect ava prometheus
