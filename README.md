@@ -24,7 +24,10 @@ document](https://docs.eigenlayer.xyz/eigenlayer/operator-guides/operator-introd
     - Total download bandwidth usage: 1 Mbps
     - Upload bandwidth usage: 1 Mbps
 
-- Incoming Ports: 9090
+- Incoming Ports:
+    - Mainnet: 9190, 9191.
+    - Holesky: 9290, 9291
+
 - Outgoing Ports: 2206
 
 If your cloud providers support Arm CPU, we suggest to use Arm because it's more cost effective.
@@ -73,6 +76,12 @@ Inside `holesky` or `ethereum` directory, We will need to prepare 2 files: `.env
 
     We don't use high io so you can store on a normal volume such as gp3 wih 3000
     IOPS on EC2.
+
+    If the default ports of PUBLIC_NODEAPI_PORT and PUBLIC_METRICS_PORT were
+    used by different processes, you can also set them to any available ports in your
+    env file too. Make sure to also open firewall to allow traffic incoming to
+    these 2 ports. The default value is as following:
+
 
 3. Next, we will create `config.yaml` file for operator:
 
@@ -254,3 +263,9 @@ https://aggregator-holesky.avaprotocol.org/telemetry
 ### Ethereum Operator Status Page
 
 https://aggregator.avaprotocol.org/telemetry
+
+## Monitoring your AVS.
+
+We provide a prometheus and grafana stack in a completed docker compose setup
+inside [monitor](monitor) directory. This docker compose stack can be used to
+configure an end to end monitoring solution for your AVS.
