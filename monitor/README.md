@@ -39,22 +39,21 @@ dashboard definition
     Those are initially credentiall, after grafana is up, you can also change the
     password directly on the UI.
    
-
 3. Now, run the following command to start the monitoring stack:
 
     ```bash
     docker compose up -d
     ```
 
-4.a. If you are running the mainnet, run the following command to
-     connect your mainnet node network to the monitoring network:
+4a. If you are running the mainnet, run the following command to
+    connect your mainnet node network to the monitoring network:
 
      ```bash
      docker network connect ava_ethereum prometheus
      ```
 
-4.b. If you are running the holesky, run the following command to
-     connect your node network to the monitoring network:
+4b. If you are running the holesky, run the following command to
+    connect your node network to the monitoring network:
 
      ```bash
      docker network connect ava prometheus
