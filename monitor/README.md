@@ -21,24 +21,24 @@ dashboard definition
 2. Update your secret
 
 
-```
-# make a copy of .env.example
-cp .env.example .env
-```
+   ```
+   # make a copy of .env.example
+   cp .env.example .env
+   ```
 
-Edit your `.env` to update 3 things
-
-```
-# This will be the port to access your grafana
-GRAFANA_PORT=3009
-# this is the default admin user name
-GF_SECURITY_ADMIN_USER=admin
-# this is the default admin user password
-GF_SECURITY_ADMIN_PASSWORD=fluffybunny
-```
-
-Those are initially credentiall, after grafana is up, you can also change the
-password directly on the UI.
+   Edit your `.env` to update 3 things
+   
+   ```
+   # This will be the port to access your grafana
+   GRAFANA_PORT=3009
+   # this is the default admin user name
+   GF_SECURITY_ADMIN_USER=admin
+   # this is the default admin user password
+   GF_SECURITY_ADMIN_PASSWORD=fluffybunny
+   ```
+   
+   Those are initially credentiall, after grafana is up, you can also change the
+   password directly on the UI.
 
 
 2. Now, run the following command to start the monitoring stack:
