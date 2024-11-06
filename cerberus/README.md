@@ -30,7 +30,7 @@ Now you will have cerberus running and reachable from your operator. You can edi
 
 ```
 bls_remote_signer:
-  grpc_url: "127.0.0.1:50051"
+  grpc_url: "cerberus:50051"
   public_key: "<pub-key-from-cerberus>"
   password: "<password-from-cerberus>"
 ```
