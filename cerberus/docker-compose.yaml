@@ -1,0 +1,24 @@
+name: cerberus
+services:
+  cerberus:
+    container_name: cerberus
+    command:
+    - "--keystore-dir=/data/keystore"
+    ports:
+      - ${CERBERUS_GRPC_PORT:-9190}:
+    volumes:
+      - keystore:/data/keystore:rw
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "10"
+    # Once EigenLayer release the official image, switch to it
+    image: ${CERBERUS_IMAGE:-avaprotocol/ceberus:latest}
+    restart: unless-stopped
+    networks:
+      - cerberus
+
+networks:
+  cerberus:
+    name: cerberus
