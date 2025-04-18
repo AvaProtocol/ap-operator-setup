@@ -1,0 +1,26 @@
+production: true
+
+operator_address: <operator-address>
+
+avs_registry_coordinator_address: 0x90c6d6f2A78d5Ce22AB8631Ddb142C03AC87De7a
+operator_state_retriever_address: 0xb7bb920538e038DFFEfcB55caBf713652ED2031F
+
+# If you have your own rpc you can switch to it
+eth_rpc_url: https://holesky.drpc.org
+eth_ws_url: wss://holesky.drpc.org
+
+ecdsa_private_key_store_path: /app/.operator-keys/operator.ecdsa.key.json
+bls_private_key_store_path: /app/.operator-keys/operator.bls.key.json
+
+db_path: /app/db
+
+aggregator_server_ip_port_address: "aggregator-holesky.avaprotocol.org:2206"
+
+eigen_metrics_ip_port_address: 0.0.0.0:9090
+enable_metrics: true
+node_api_ip_port_address: 0.0.0.0:9010
+enable_node_api: true
+
+target_chain:
+  eth_rpc_url: <http-chain-rpc>
+  eth_ws_url: <websocket-chain-rpc>
