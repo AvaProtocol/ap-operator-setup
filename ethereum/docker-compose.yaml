@@ -25,7 +25,7 @@ services:
       options:
         max-size: "100m"
         max-file: "10"
-    image: ${AP_OPERATOR_IMAGE:-avaprotocol/ap-avs:mainnet}
+    image: ${AP_OPERATOR_IMAGE:-avaprotocol/ap-avs:latest}
     restart: unless-stopped
     networks:
       - ava
