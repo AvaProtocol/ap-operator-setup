@@ -7,7 +7,10 @@ scrape_configs:
   - job_name: 'operator-metrics'
     scrape_interval: 1m
     static_configs:
-      - targets: ['ap_operator_ethereum:9090']
+      # Mainnet and Sepolia containers, in case you run both on one host.
+      # A network you don't run simply shows as down — remove its target to
+      # silence it.
+      - targets: ['ap_operator_ethereum:9090', 'ap_operator_sepolia:9090']
 
   # Scrape the server metric itself
   - job_name: 'node'

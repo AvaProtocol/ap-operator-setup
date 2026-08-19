@@ -24,7 +24,8 @@ document](https://docs.eigenlayer.xyz/eigenlayer/operator-guides/operator-introd
     - Total download bandwidth usage: 1 Mbps
     - Upload bandwidth usage: 1 Mbps
 
-- Incoming Ports: 9190, 9191 (mainnet). If you customize the docker compose
+- Incoming Ports: 9190, 9191 for mainnet; 9290, 9291 for Sepolia. The two sets
+  differ so you can run both on one host. If you customize the docker compose
   ports, adjust accordingly.
 
 - Outgoing Ports: 57376
@@ -41,23 +42,32 @@ git clone git@github.com:AvaProtocol/ap-operator-setup.git
 cd ap-operator-setup
 ```
 
-Use the `ethereum` directory. It holds the mainnet deployment, which is the only
-one open to third-party operators.
+There are two directories:
+
+| Directory | Network | AVS registration chain | Use it for |
+| --- | --- | --- | --- |
+| `ethereum` | Ethereum mainnet | Ethereum | Production. Real stake, real slashing. |
+| `sepolia` | Sepolia + Base Sepolia | Sepolia | Testing your setup before you commit mainnet stake. |
+
+Both dial the same aggregator address — the gateway is one deployment that routes
+per-chain internally. Which network you operate on is decided by the AVS you
+registered against and the `chains:` block in your config, not by the address you
+dial.
 
 > The `holesky`, `base` and `base-sepolia` directories have been removed. All
 > three registered against the same Holesky AVS deployment, which EigenLayer has
-> sunset, and named an aggregator host that no longer resolves. Third-party
-> operator support is mainnet-only — testnet coordination is handled internally
-> by Ava Protocol.
+> sunset, and named an aggregator host that no longer resolves. Sepolia replaces
+> Holesky as the testnet.
 
 
 ## 2. Prepare config file and credential
 
-For ethereum mainnet, we would do everything inside the `ethereum` directory.
+Do everything inside the directory for your network — `ethereum` for mainnet,
+`sepolia` for testnet. The steps are identical; only the directory differs.
 
-Inside the `ethereum` directory, We will need to prepare 2 files: `.env` and `config.yaml`.
+Inside that directory, We will need to prepare 2 files: `.env` and `config.yaml`.
 
-1. Make sure you are under the `ethereum` directory, and prepare `.env` file
+1. Make sure you are under the `ethereum` (or `sepolia`) directory, and prepare `.env` file
     ```
     cp .env.example .env
     ```
@@ -98,7 +108,7 @@ Inside the `ethereum` directory, We will need to prepare 2 files: `.env` and `co
 ## 2.b One-time task: Register your operator to Ava Protocol AVS
 
 This step is only needed to be done once per operator. Also, recall that you
-would need to `cd` into the `ethereum` directory before running anything.
+would need to `cd` into your network's directory before running anything.
 
 
 ```
@@ -190,7 +200,7 @@ that key.
 
 ## 3. Start to run our AVS
 
-1. Make sure you are under the `./ethereum` directory.
+1. Make sure you are under your network's directory (`./ethereum` or `./sepolia`).
 2. Run the following command to start the operator
     ```
     docker compose pull
@@ -231,7 +241,7 @@ that key.
 # pull the lastest change from our repository
 git pull
 
-# cd into the ethereum directory
+# cd into your network's directory (ethereum for mainnet, sepolia for testnet)
 cd ethereum
 
 # then issue a pull command to fetch latest image

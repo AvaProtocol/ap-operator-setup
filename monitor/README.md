@@ -45,7 +45,9 @@ dashboard definition
     docker compose up -d
     ```
 
-4. Connect your container node to the monitoring network:
+4. Connect your container node to the monitoring network. Use the network for
+   the setup you are running — `ava_ethereum` for mainnet, `ava_sepolia` for
+   Sepolia — and run it once per network if you run both:
 
     ```bash
     docker network connect ava_ethereum prometheus
