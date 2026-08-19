@@ -45,20 +45,10 @@ dashboard definition
     docker compose up -d
     ```
 
-4. Connect your container node to monitoring network
-
-    4.a If you are running the mainnet, run the following command to
-        connect your mainnet node network to the monitoring network:
+4. Connect your container node to the monitoring network:
 
     ```bash
     docker network connect ava_ethereum prometheus
-    ```
-
-    4b. If you are running the holesky, run the following command to
-        connect your node network to the monitoring network:
-
-    ```bash
-    docker network connect ava prometheus
     ```
 
 5. Done! Now Prometheus should be scraping the metrics from the AP avs
@@ -116,7 +106,7 @@ allocating more cores if you're using resource constraints.
 
 First off, check to ensure your node has enough free CPU and memory to allocate
 to the operator to do the work. Ensure traffic is flowing between your node and
-our aggregator. That means outgoing port 2206 is opened.
+our aggregator. That means outgoing port 57376 is opened.
 
 Check your node log; it will have issues such as the node being stuck in a crash
 loop, indicating the root cause of the error there.

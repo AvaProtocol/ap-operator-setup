@@ -44,11 +44,11 @@ cd ap-operator-setup
 Use the `ethereum` directory. It holds the mainnet deployment, which is the only
 one open to third-party operators.
 
-> **The `holesky`, `base` and `base-sepolia` directories are retired.** Testnet
-> operator coordination is handled internally by Ava Protocol and is no longer
-> open to external operators, and the `aggregator-holesky.avaprotocol.org`
-> endpoint those configs name no longer resolves. They are kept only for
-> reference and will not connect.
+> The `holesky`, `base` and `base-sepolia` directories have been removed. All
+> three registered against the same Holesky AVS deployment, which EigenLayer has
+> sunset, and named an aggregator host that no longer resolves. Third-party
+> operator support is mainnet-only — testnet coordination is handled internally
+> by Ava Protocol.
 
 
 ## 2. Prepare config file and credential
@@ -240,6 +240,15 @@ docker compose pull
 # finally restart the container with the new image
 docker compose up --force-recreate -d
 ```
+
+The compose file resolves the image as `${AP_OPERATOR_IMAGE:-avaprotocol/ap-avs:latest}`.
+If you have pinned `AP_OPERATOR_IMAGE` in your `.env`, `docker compose pull` fetches
+that pinned tag and will not move you onto a newer release — check that variable
+first if an update appears to do nothing.
+
+Run released tags only: `avaprotocol/ap-avs:latest`, or a specific `vX.Y.Z`. The
+`main-*` and `staging-*` tags on that repository are unreleased branch builds and
+are not intended for operators.
 
 ## How to configure auto update
 
