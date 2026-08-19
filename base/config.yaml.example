@@ -1,3 +1,10 @@
+# RETIRED — this configuration no longer connects.
+#
+# Third-party operator support is mainnet-only; testnet operator coordination is
+# handled internally by Ava Protocol. The aggregator host named below
+# (aggregator-holesky.avaprotocol.org) was decommissioned along with the
+# per-chain aggregators and no longer resolves. Use ../ethereum instead.
+
 production: true
 
 operator_address: <operator-address>
