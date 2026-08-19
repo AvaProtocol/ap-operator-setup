@@ -65,7 +65,7 @@ dial.
 Do everything inside the directory for your network — `ethereum` for mainnet,
 `sepolia` for testnet. The steps are identical; only the directory differs.
 
-Inside that directory, We will need to prepare 2 files: `.env` and `config.yaml`.
+Inside that directory, we will need to prepare two files: `.env` and `config.yaml`.
 
 1. Make sure you are under the `ethereum` (or `sepolia`) directory, and prepare `.env` file
     ```

@@ -50,7 +50,11 @@ dashboard definition
    Sepolia — and run it once per network if you run both:
 
     ```bash
+    # mainnet
     docker network connect ava_ethereum prometheus
+
+    # sepolia
+    docker network connect ava_sepolia prometheus
     ```
 
 5. Done! Now Prometheus should be scraping the metrics from the AP avs
@@ -90,7 +94,7 @@ allocating more cores if you're using resource constraints.
   rate of a 5-minute window drops to 0, you know the operator has not received
   tasks and it should be alerted. This can either be because the operator failed
   to establish a connection with the aggregator, or the aggregator failed to push
-  the message. Check out the [telemetry page](https://aggregator.avaprotocol.org/telemetry)
+  the message. Check out the [telemetry page](https://api.avaprotocol.org/telemetry)
   for any issue or reach out to us on telegram.
 
 - **ap_num_worker_loop_total**: The operator has a work loop. If this counter
