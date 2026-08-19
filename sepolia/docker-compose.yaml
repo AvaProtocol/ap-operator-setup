@@ -1,9 +1,9 @@
-name: ava_protocol-base-sepolia
+name: ava_protocol_sepolia
 services:
   ap-operator:
     env_file:
       - .env
-    container_name: ap_operator-base-sepolia
+    container_name: ap_operator_sepolia
     command:
     - operator
     - "--config=/app/config.yaml"
@@ -32,4 +32,4 @@ services:
 
 networks:
   ava:
-    name: ava-base-sepolia
+    name: ava_sepolia

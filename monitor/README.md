@@ -45,20 +45,16 @@ dashboard definition
     docker compose up -d
     ```
 
-4. Connect your container node to monitoring network
-
-    4.a If you are running the mainnet, run the following command to
-        connect your mainnet node network to the monitoring network:
+4. Connect your container node to the monitoring network. Use the network for
+   the setup you are running — `ava_ethereum` for mainnet, `ava_sepolia` for
+   Sepolia — and run it once per network if you run both:
 
     ```bash
+    # mainnet
     docker network connect ava_ethereum prometheus
-    ```
 
-    4b. If you are running the holesky, run the following command to
-        connect your node network to the monitoring network:
-
-    ```bash
-    docker network connect ava prometheus
+    # sepolia
+    docker network connect ava_sepolia prometheus
     ```
 
 5. Done! Now Prometheus should be scraping the metrics from the AP avs
@@ -98,7 +94,7 @@ allocating more cores if you're using resource constraints.
   rate of a 5-minute window drops to 0, you know the operator has not received
   tasks and it should be alerted. This can either be because the operator failed
   to establish a connection with the aggregator, or the aggregator failed to push
-  the message. Check out the [telemetry page](https://aggregator.avaprotocol.org/telemetry)
+  the message. Check out the [telemetry page](https://api.avaprotocol.org/telemetry)
   for any issue or reach out to us on telegram.
 
 - **ap_num_worker_loop_total**: The operator has a work loop. If this counter
@@ -116,7 +112,7 @@ allocating more cores if you're using resource constraints.
 
 First off, check to ensure your node has enough free CPU and memory to allocate
 to the operator to do the work. Ensure traffic is flowing between your node and
-our aggregator. That means outgoing port 2206 is opened.
+our aggregator. That means outgoing port 57376 is opened.
 
 Check your node log; it will have issues such as the node being stuck in a crash
 loop, indicating the root cause of the error there.

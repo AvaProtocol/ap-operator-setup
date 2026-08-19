@@ -1,0 +1,44 @@
+production: true
+
+operator_address: <your-operator-address>
+
+# Sepolia AVS contracts. This is the chain your operator REGISTERS against —
+# distinct from the chains it monitors (see `chains:` below).
+avs_registry_coordinator_address: 0xcA95381802FD1398d5BF2D01243210cFb3a2b3BD
+operator_state_retriever_address: 0x070E0ABE8407eb4727fC7C5284bdc1e5E5CBf605
+
+# Sepolia RPC, for reading your AVS registration and stake. Bring your own key —
+# public endpoints rate-limit and will make your operator flap. eth_ws_url is
+# OPTIONAL: when omitted it is derived from eth_rpc_url by swapping the scheme
+# (https->wss), which is correct for every provider that serves both at the same
+# host and path.
+eth_rpc_url: <your-sepolia-rpc-url>
+
+ecdsa_private_key_store_path: /app/.operator-keys/operator.ecdsa.key.json
+bls_private_key_store_path: /app/.operator-keys/operator.bls.key.json
+
+db_path: /app/db
+
+# The gateway is a single deployment serving every chain, testnet included, so
+# this is the same address mainnet operators use. Which chains you actually work
+# is decided by `chains:` below, not by the address you dial.
+aggregator_server_ip_port_address: "aggregator.avaprotocol.org:57376"
+
+eigen_metrics_ip_port_address: 0.0.0.0:9090
+enable_metrics: true
+node_api_ip_port_address: 0.0.0.0:9010
+enable_node_api: true
+
+# Destination chains this operator monitors. Each chain_id is verified against
+# its RPC at startup; a mismatched RPC drops that chain from the advertised set
+# rather than crashing the operator. Drop an entry to stop monitoring that chain.
+chains:
+  - chain_id: 11155111
+    name: sepolia
+    eth_rpc_url: <your-sepolia-rpc-url>
+  - chain_id: 84532
+    name: base-sepolia
+    eth_rpc_url: <your-base-sepolia-rpc-url>
+
+enabled_features:
+  event_trigger: true

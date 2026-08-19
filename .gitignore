@@ -1,4 +1,11 @@
 .DS_Store
+
+# Operator credentials — never commit. Broad patterns on purpose: a stray
+# ".env copy" or ".env.bak" carries the same keystore passwords as ".env".
 .env
+.env.*
+*.env
+.env*
+!.env.example
 config.yaml
 keys
