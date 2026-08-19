@@ -24,11 +24,10 @@ document](https://docs.eigenlayer.xyz/eigenlayer/operator-guides/operator-introd
     - Total download bandwidth usage: 1 Mbps
     - Upload bandwidth usage: 1 Mbps
 
-- Incoming Ports:
-    - Mainnet: 9190, 9191.
-    - Holesky: 9290, 9291
+- Incoming Ports: 9190, 9191 (mainnet). If you customize the docker compose
+  ports, adjust accordingly.
 
-- Outgoing Ports: 2206
+- Outgoing Ports: 57376
 
 If your cloud providers support Arm CPU, we suggest to use Arm because it's more cost effective.
 
@@ -42,19 +41,23 @@ git clone git@github.com:AvaProtocol/ap-operator-setup.git
 cd ap-operator-setup
 ```
 
-We had two directory call `holesky` and `ethereum`. To setup testnet, you will do
-everything inside `hokesky` directory. For mainnet deployment, you would use
-files inside `ethereum` directory.
+Use the `ethereum` directory. It holds the mainnet deployment, which is the only
+one open to third-party operators.
+
+> **The `holesky`, `base` and `base-sepolia` directories are retired.** Testnet
+> operator coordination is handled internally by Ava Protocol and is no longer
+> open to external operators, and the `aggregator-holesky.avaprotocol.org`
+> endpoint those configs name no longer resolves. They are kept only for
+> reference and will not connect.
 
 
 ## 2. Prepare config file and credential
 
-To setup for holesky testnet, we would do everything inside `holesky` directory.
-To setup for ethereum mainnet, we would do everything inside `ethereum` directory.
+For ethereum mainnet, we would do everything inside the `ethereum` directory.
 
-Inside `holesky` or `ethereum` directory, We will need to prepare 2 files: `.env` and `config.yaml`.
+Inside the `ethereum` directory, We will need to prepare 2 files: `.env` and `config.yaml`.
 
-1. Make sure you are under `ethereum` or `holesky` direction, and prepare `.env` file
+1. Make sure you are under the `ethereum` directory, and prepare `.env` file
     ```
     cp .env.example .env
     ```
@@ -95,8 +98,7 @@ Inside `holesky` or `ethereum` directory, We will need to prepare 2 files: `.env
 ## 2.b One-time task: Register your operator to Ava Protocol AVS
 
 This step is only needed to be done once per operator. Also, recall that you
-would need to `cd` into `holesky` for testnet and `ethereum` for mainnet before
-running anything.
+would need to `cd` into the `ethereum` directory before running anything.
 
 
 ```
@@ -188,7 +190,7 @@ that key.
 
 ## 3. Start to run our AVS
 
-1. Make sure you are under `./ethereum` or `./holesky` directory.
+1. Make sure you are under the `./ethereum` directory.
 2. Run the following command to start the operator
     ```
     docker compose pull
@@ -213,7 +215,7 @@ that key.
     The log should appear similar to this:
     
     ```
-    ap_operator  | {"level":"info","ts":1719529804.5644045,"caller":"operator/operator.go:263","msg":"Connect to aggregator aggregator-holesky.avaprotocol.org:2206"}
+    ap_operator  | {"level":"info","ts":1719529804.5644045,"caller":"operator/operator.go:263","msg":"Connect to aggregator aggregator.avaprotocol.org:57376"}
     ap_operator  | {"level":"info","ts":1719529804.8751178,"caller":"operator/operator.go:307","msg":"Operator info","operatorId":[74,60,26,85,160,147,136,79,102,183,189,62,99,76,192,151,203,7,97,85,230,236,25,160,46,242,83,194,177,93,63,163],"operatorAddr":"0x2273e70Ea0F159985a9312e875839CbF242f162e","operatorG1Pubkey":"E([13980129839750270625587959504067205960106881892608925358182969477593110597180,2713793992502006479543294653290264953732656227600455037615150886215476630684])","operatorG2Pubkey":"E([10006440951214432193970386287330007898372605552301114697229665952718363326438+2917899138783614023915162275072742305856792653861495716209344717215206657922*u,20465317265628248898772842070116958367267377808142334627836040792686631701030+11895853732396257221594908719294998059804388586884333547663795174064486592588*u])"}
     ap_operator  | {"level":"info","ts":1719529805.3309655,"caller":"operator/operator.go:330","msg":"Starting operator."}
     ap_operator  | {"level":"info","ts":1719529805.3310997,"caller":"nodeapi/nodeapi.go:104","msg":"Starting node api server at address 0.0.0.0:9010"}
@@ -229,7 +231,7 @@ that key.
 # pull the lastest change from our repository
 git pull
 
-# cd into either mainnet or holesky directory depend on mainne or testnet
+# cd into the ethereum directory
 cd ethereum
 
 # then issue a pull command to fetch latest image
@@ -256,13 +258,10 @@ processing task that our aggregator asked it to do.
 
 You can also visit the telemetry dashboard
 
-### Testnet Operator Status Page
+https://api.avaprotocol.org/telemetry
 
-https://aggregator-holesky.avaprotocol.org/telemetry
-
-### Ethereum Operator Status Page
-
-https://aggregator.avaprotocol.org/telemetry
+One dashboard covers every chain. The previous per-network
+`aggregator-*.avaprotocol.org/telemetry` pages no longer exist.
 
 ## Monitoring your AVS.
 

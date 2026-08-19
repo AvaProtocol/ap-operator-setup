@@ -14,7 +14,7 @@ bls_private_key_store_path: /app/.operator-keys/operator.bls.key.json
 
 db_path: /app/db
 
-aggregator_server_ip_port_address: "aggregator.avaprotocol.org:2206"
+aggregator_server_ip_port_address: "aggregator.avaprotocol.org:57376"
 
 eigen_metrics_ip_port_address: 0.0.0.0:9090
 enable_metrics: true
